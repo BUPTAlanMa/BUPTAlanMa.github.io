@@ -15,7 +15,7 @@ CNN-图像分割相关
 |--------|--------|---------|---------|
 |    1    |   [U-Net: Convolutional Networks for BiomedicalImage Segmentation](https://arxiv.org/abs/1505.04597)     |Ronneberger O, Fischer P, Brox T. U-Net: Convolutional Networks for Biomedical Image Segmentation[M]// Medical Image Computing and Computer-Assisted Intervention — MICCAI 2015. Springer International Publishing, 2015:234-241. |[论文阅读笔记]|
 |2       |  [SegNet: A Deep Convolutional Encoder-Decoder Architecture for Image Segmentation](https://arxiv.org/abs/1511.00561)| Badrinarayanan V, Kendall A, Cipolla R. SegNet: A Deep Convolutional Encoder-Decoder Architecture for Scene Segmentation.[J]. IEEE Transactions on Pattern Analysis and Machine Intelligence, 2017, PP(99):1-1.     |[论文阅读笔记](https://github.com/BUPTAlanMa/BUPTAlanMa.github.io/blob/master/CNN/SegNet-notes/SegNet阅读笔记.md)|
-|2|   [SegNet: A Deep Convolutional Encoder-Decoder Architecture for Robust Semantic Pixel-Wise Labelling](https://arxiv.org/pdf/1511.00561) |   Badrinarayanan V, Handa A, Cipolla R. SegNet: A Deep Convolutional Encoder-Decoder Architecture for Robust Semantic Pixel-Wise Labelling[J]. Computer Science, 2015.    |[论文阅读笔记](https://github.com/BUPTAlanMa/BUPTAlanMa.github.io/blob/master/CNN/SegNet-notes/SegNet阅读笔记.md)|
+|2.1|   [SegNet: A Deep Convolutional Encoder-Decoder Architecture for Robust Semantic Pixel-Wise Labelling](https://arxiv.org/pdf/1511.00561) |   Badrinarayanan V, Handa A, Cipolla R. SegNet: A Deep Convolutional Encoder-Decoder Architecture for Robust Semantic Pixel-Wise Labelling[J]. Computer Science, 2015.    |[论文阅读笔记](https://github.com/BUPTAlanMa/BUPTAlanMa.github.io/blob/master/CNN/SegNet-notes/SegNet阅读笔记.md)|
 
 
 
