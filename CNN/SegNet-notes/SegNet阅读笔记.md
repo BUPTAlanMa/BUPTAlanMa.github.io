@@ -8,8 +8,6 @@
 
 ![SegNet网络结构图](结构图.png)
 
-[TOC]
-
 ## 主要思想
 
 - encoder-decoder结构，可以产生更平滑的分割效果。对比FCN（不加后处理CRF）分割效果，后者的效果呈现块状（blocky），即后者对边界的描述性能不强。原因在于：池化操作造成的分辨率损失，再加上FCN没有进行decoder操作(指的是，相比于SegNet, FCN在skip-connet融合后，没有再进行进一步的卷积)。详细分析见后文。
@@ -31,7 +29,7 @@
 | SegNet| DeconvNet| DeconvNet与SegNet结构很相似，但是DeconvNet在利用VGG16模型时，保留了fc层，导致参数规模比SegNet大很多，训练的难度也随之增加。 |
 | SegNet| U-Net| U-Net也是encoder-decoder结构，常用于医学图像。U-Net的一般实现中，上采样是转置卷积或者双线性插值，而且存在skip-connet。相比于SegNet没有重利用池化indices， decoder是将encoder阶段的feature map与上采样的输出featuer map拼接，再进行卷积，意味着更多的内存代价。|
 
-![SegNet_vs_FCN in decoder](SegNet_vs_FCN _in_decoder.png)
+![SegNet_vs_FCN in decoder](SegNet_vs_FCN_in_decoder.png)
 
 2. SegNet的一般结构没有skip-connet，相比于FCN的多层融合。而是采用记录池化indices的方式，进行上采样，这样减少了内存占用。实验中SegNet的变体SegNet-Basic-EncoderAddition，也实验了skip-connet的方式，即将每个encoder的64个feature map与对应的decoder输出融合。具体操作是：在decoder(上采样+卷积)后，对应feature map逐元素相加得到输出。
 **实验证明，该变种性能最优，但是是在增加更多存储的情况下。**
