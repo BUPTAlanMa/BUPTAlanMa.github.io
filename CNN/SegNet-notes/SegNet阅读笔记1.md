@@ -6,15 +6,15 @@
 |    SegNet: A Deep Convolutional Encoder-Decoder Architecture for Image Segmentation  |   Badrinarayanan V, Kendall A, Cipolla R. SegNet: A Deep Convolutional Encoder-Decoder Architecture for Scene Segmentation.[J]. IEEE Transactions on Pattern Analysis and Machine Intelligence, 2017, PP(99):1-1.     |[arXiv](https://arxiv.org/abs/1511.00561)|
 |   SegNet: A Deep Convolutional Encoder-Decoder Architecture for Robust Semantic Pixel-Wise Labelling  |   Badrinarayanan V, Handa A, Cipolla R. SegNet: A Deep Convolutional Encoder-Decoder Architecture for Robust Semantic Pixel-Wise Labelling[J]. Computer Science, 2015.    |[arXiv](https://arxiv.org/pdf/1511.00561)|
 
-![SegNet网络结构图](结构图.png)
+![SegNet网络结构图]($res/%E7%BB%93%E6%9E%84%E5%9B%BE.png)
 
-[TOC]
+[[toc]]
 
 ## 主要思想
 
 - encoder-decoder结构，可以产生更平滑的分割效果。对比FCN（不加后处理CRF）分割效果，后者的效果呈现块状（blocky），即后者对边界的描述性能不强。原因在于：池化操作造成的分辨率损失，再加上FCN没有进行decoder操作(指的是，相比于SegNet, FCN在skip-connet融合后，没有再进行进一步的卷积)。详细分析见后文。
 
-![分割边界效果对比](分割边界效果对比.png)
+![分割边界效果对比]($res/%E5%88%86%E5%89%B2%E8%BE%B9%E7%95%8C%E6%95%88%E6%9E%9C%E5%AF%B9%E6%AF%94.png)
 
 - unsample的方法。SegNet通过记录池化时的indices，在上采样时，利用记录的indices还原分辨率。好处是：1). 相比于deconvolution，不需要额外的参数进行学习，有利于端到端训练(降低训练难度)。2). 非线性。 3). 提升边界的描述能力。4). 易于扩展到其他的encoder-decoder结构。
 
@@ -31,7 +31,7 @@
 | SegNet| DeconvNet| DeconvNet与SegNet结构很相似，但是DeconvNet在利用VGG16模型时，保留了fc层，导致参数规模比SegNet大很多，训练的难度也随之增加。 |
 | SegNet| U-Net| U-Net也是encoder-decoder结构，常用于医学图像。U-Net的一般实现中，上采样是转置卷积或者双线性插值，而且存在skip-connet。相比于SegNet没有重利用池化indices， decoder是将encoder阶段的feature map与上采样的输出featuer map拼接，再进行卷积，意味着更多的内存代价。|
 
-![SegNet_vs_FCN in decoder](SegNet_vs_FCN _in_decoder.png)
+![SegNet_vs_FCN in decoder]($res/SegNet_vs_FCN%20in%20decoder.png)
 
 2. SegNet的一般结构没有skip-connet，相比于FCN的多层融合。而是采用记录池化indices的方式，进行上采样，这样减少了内存占用。实验中SegNet的变体SegNet-Basic-EncoderAddition，也实验了skip-connet的方式，即将每个encoder的64个feature map与对应的decoder输出融合。具体操作是：在decoder(上采样+卷积)后，对应feature map逐元素相加得到输出。
 **实验证明，该变种性能最优，但是是在增加更多存储的情况下。**
